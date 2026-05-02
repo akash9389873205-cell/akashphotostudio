@@ -1,266 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Photo Studio | Professional Photography</title>
+    <title>Akash Photo Studio | Premium Photography</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config for the "Primary" Amber Theme -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#d97706', // amber-600
+                            foreground: '#ffffff',
+                        },
+                        card: '#111827', // gray-900
+                        accent: '#1f2937', // gray-800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .nav-link.active { color: #2563eb; font-weight: 700; }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
-        .section-padding { padding: 5rem 0; }
+        html { scroll-behavior: smooth; }
+        /* Glassmorphism utility for the navbar */
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-gray-950 text-white min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 glass h-20 flex items-center">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter text-blue-600">AKASH STUDIO</a>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#home" class="nav-link hover:text-blue-600 transition-colors">Home</a>
-                <a href="#services" class="nav-link hover:text-blue-600 transition-colors">Services</a>
-                <a href="#portfolio" class="nav-link hover:text-blue-600 transition-colors">Portfolio</a>
-                <a href="#contact" class="px-5 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">Book Now</a>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 w-full glass-nav">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+            <a class="flex items-center gap-2.5 group" href="#">
+                <div class="w-9 h-9 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center shadow-md shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-shadow">
+                    <i data-lucide="camera" class="w-5 h-5 text-white"></i>
+                </div>
+                <div class="leading-none">
+                    <span class="font-bold text-lg tracking-tight block">Akash Studio</span>
+                    <span class="text-[10px] text-amber-500 font-semibold tracking-[0.2em] uppercase">Photography</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center flex-wrap gap-6">
+                <a class="text-sm font-medium hover:text-amber-500 transition-colors" href="#">Home</a>
+                <a class="text-sm font-medium hover:text-amber-500 transition-colors" href="#">About Us</a>
+                <a class="text-sm font-medium text-amber-500 transition-colors" href="#">Services</a>
+                <a class="text-sm font-medium hover:text-amber-500 transition-colors" href="#">Portfolio</a>
+                <a class="text-sm font-medium hover:text-amber-500 transition-colors" href="#">Contact Us</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors" href="#">
+                    <i data-lucide="log-in" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Sign In</span>
+                </a>
+                <a class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium bg-amber-600 text-white hover:bg-amber-700 transition-colors" href="#">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Register</span>
+                </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070" class="w-full h-full object-cover opacity-90" alt="Hero">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-white"></div>
-        </div>
-        <div class="container relative z-10 text-center text-white px-6">
-            <p class="text-sm uppercase tracking-[0.3em] font-semibold mb-4 animate-bounce">Professional Photography</p>
-            <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight">Capturing Moments <br> <span class="text-blue-400">Defining Stories</span></h1>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-200">From grand weddings to intimate portraits, we preserve your precious memories with timeless artistry.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#portfolio" class="px-8 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-xl">View Portfolio</a>
-                <a href="#contact" class="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-all shadow-xl">Contact Us</a>
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070" alt="Hero" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gray-950/60"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section-padding bg-slate-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Expertise</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">We offer a wide range of photography services tailored to your needs.</p>
-            </div>
-            <!-- Dynamic Services Container -->
-            <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <p class="text-center col-span-3 text-slate-400">Loading services from database...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-16">Featured Work</h2>
-            <!-- Dynamic Portfolio Container -->
-            <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <p class="text-center col-span-3 text-slate-400">Loading portfolio from database...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section (Unchanged UI, existing Firebase logic) -->
-    <section id="contact" class="section-padding bg-slate-900 text-white">
-        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Let's Create <br> Something Great</h2>
-                <p class="text-slate-400 text-lg mb-10 max-w-md">Ready to book your session or have a question? Fill out the form and we'll get back to you within 24 hours.</p>
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center">
-                            <i data-lucide="mail" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold">Email Us</p>
-                            <p class="text-slate-400">hello@akashstudio.com</p>
-                        </div>
-                    </div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+                    <i data-lucide="quote" class="w-4 h-4 text-amber-500"></i>
+                    <span class="text-sm font-medium text-gray-200">A picture is worth a thousand words, but a great photo tells a love story.</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">Romance Before the Vows</h1>
+                <p class="text-xl text-gray-300 mb-10">Pre-wedding magic that tells your unique love story</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="px-8 py-3.5 bg-amber-600 text-white font-medium rounded-md hover:bg-amber-700 transition-colors">
+                        Pre-Wedding Shoots
+                    </button>
+                    <button class="px-8 py-3.5 bg-transparent border border-gray-400 text-white font-medium rounded-md hover:bg-gray-800 transition-colors">
+                        Book a Session
+                    </button>
                 </div>
             </div>
-            <div class="bg-white text-slate-900 p-8 rounded-[2rem] shadow-2xl">
-                <form id="contactForm" class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-slate-400 mb-1 block">First Name</label>
-                            <input type="text" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" required>
+        </section>
+
+        <!-- Services Section -->
+        <section class="w-full py-24 bg-[#0a0a0a]">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-amber-500 mb-3">What We Offer</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Our Expertise</h2>
+                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">From intimate engagements to grand weddings — we craft stories through our lens.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card 1 -->
+                    <a class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer" href="#">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800" alt="Engagement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent"></div>
+                            
+                            <!-- Glassmorphism Icon -->
+                            <div class="absolute top-4 right-4 w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/20 shadow-lg">
+                                <i data-lucide="heart" class="w-7 h-7"></i>
+                            </div>
+                            
+                            <!-- Price Badge -->
+                            <div class="absolute bottom-4 left-4 bg-amber-600/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                                ₹24,999
+                            </div>
                         </div>
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Last Name</label>
-                            <input type="text" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-500 transition-colors">Engagement Photography</h3>
+                            <p class="text-gray-400 text-sm italic mb-4 leading-relaxed">“Where your forever begins — let us frame the promise of a lifetime.”</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">5-hour session</span>
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">50+ edited photos</span>
+                            </div>
+                            <div class="mt-5 flex items-center gap-2 text-amber-500 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                                View Details <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label class="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Email Address</label>
-                        <input type="email" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" required>
-                    </div>
-                    <div>
-                        <label class="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Your Message</label>
-                        <textarea rows="4" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-blue-500 outline-none resize-none" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2">
-                        Send Message <i data-lucide="send" class="w-4 h-4"></i>
-                    </button>
-                </form>
+                    </a>
+
+                    <!-- Service Card 2 -->
+                    <a class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer" href="#">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=800" alt="Wedding" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent"></div>
+                            
+                            <div class="absolute top-4 right-4 w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/20 shadow-lg">
+                                <i data-lucide="crown" class="w-7 h-7"></i>
+                            </div>
+                            
+                            <div class="absolute bottom-4 left-4 bg-amber-600/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                                ₹50,000
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-500 transition-colors">Wedding Photography</h3>
+                            <p class="text-gray-400 text-sm italic mb-4 leading-relaxed">“Your dream day, our timeless artistry — every tear, smile, and dance preserved.”</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">Full day coverage</span>
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">300+ edited photos</span>
+                            </div>
+                            <div class="mt-5 flex items-center gap-2 text-amber-500 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                                View Details <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Service Card 3 -->
+                    <a class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer" href="#">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800" alt="Fashion" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent"></div>
+                            
+                            <div class="absolute top-4 right-4 w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/20 shadow-lg">
+                                <i data-lucide="camera" class="w-7 h-7"></i>
+                            </div>
+                            
+                            <div class="absolute bottom-4 left-4 bg-amber-600/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                                ₹20,000
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-500 transition-colors">Fashion Photography</h3>
+                            <p class="text-gray-400 text-sm italic mb-4 leading-relaxed">“Bold. Beautiful. Unforgettable — photography that defines style.”</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">3-hour session</span>
+                                <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full border border-gray-700">Styling assistance</span>
+                            </div>
+                            <div class="mt-5 flex items-center gap-2 text-amber-500 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                                View Details <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="w-full py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white">
+            <div class="container mx-auto px-4 md:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Create Something Beautiful?</h2>
+                <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">Explore all our photography services and find the perfect package for your special moments.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="px-8 py-3.5 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-100 transition-colors">
+                        Explore All Services
+                    </button>
+                    <button class="px-8 py-3.5 bg-transparent border border-white text-white font-medium rounded-md hover:bg-white/20 transition-colors">
+                        Get in Touch
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-12 bg-white border-t border-slate-100 text-center">
-        <div class="container mx-auto px-6">
-            <h2 class="text-2xl font-bold tracking-tighter text-blue-600 mb-6">AKASH STUDIO</h2>
-            <p class="text-sm text-slate-400">&copy; 2024 Akash Photo Studio. All rights reserved.</p>
+    <footer class="bg-black border-t border-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center">
+                        <i data-lucide="camera" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold tracking-tight">Akash Studio</h3>
+                        <p class="text-[10px] text-amber-500 font-semibold tracking-widest uppercase">Photography</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 hover:bg-amber-600 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 hover:bg-amber-600 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-900 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>© 2026 Akash Photo Studio. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-amber-500 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-amber-500 transition-colors">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        // Added getDocs to fetch multiple documents from collections
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        // Your Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyAE1UfdqWZUZfi3PpRVscNYnQNeHjMOYTM",
-            authDomain: "akashphotostudio-cb1db.firebaseapp.com",
-            projectId: "akashphotostudio-cb1db",
-            storageBucket: "akashphotostudio-cb1db.firebasestorage.app",
-            messagingSenderId: "977730665800",
-            appId: "1:977730665800:web:b9279e58cc4e08ff8b077d"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Initialize Icons for the static HTML
+    <!-- Initialize Icons -->
+    <script>
         lucide.createIcons();
-
-        // --- FETCH AND RENDER SERVICES ---
-        async function loadServices() {
-            const servicesGrid = document.getElementById('servicesGrid');
-            try {
-                const querySnapshot = await getDocs(collection(db, "services"));
-                
-                if (querySnapshot.empty) {
-                    servicesGrid.innerHTML = '<p class="text-center col-span-3 text-slate-500">No services available yet.</p>';
-                    return;
-                }
-
-                let htmlContent = '';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    // Split comma-separated bullet points into an array
-                    const bulletsArray = data.bullets ? data.bullets.split(',') : [];
-                    let bulletsHtml = bulletsArray.map(bullet => `<li>• ${bullet.trim()}</li>`).join('');
-
-                    htmlContent += `
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 hover:shadow-2xl transition-all group">
-                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i data-lucide="camera" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
-                        <p class="text-slate-500 mb-6">${data.description}</p>
-                        <ul class="space-y-2 text-sm text-slate-600 font-medium">
-                            ${bulletsHtml}
-                        </ul>
-                    </div>`;
-                });
-                
-                servicesGrid.innerHTML = htmlContent;
-                lucide.createIcons(); // Re-initialize icons for newly added HTML
-            } catch (error) {
-                console.error("Error fetching services: ", error);
-                servicesGrid.innerHTML = '<p class="text-center col-span-3 text-red-500">Error loading services.</p>';
-            }
-        }
-
-        // --- FETCH AND RENDER PHOTOS ---
-        async function loadPhotos() {
-            const portfolioGrid = document.getElementById('portfolioGrid');
-            try {
-                const querySnapshot = await getDocs(collection(db, "photos"));
-                
-                if (querySnapshot.empty) {
-                    portfolioGrid.innerHTML = '<p class="text-center col-span-3 text-slate-500">No photos uploaded yet.</p>';
-                    return;
-                }
-
-                let htmlContent = '';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    htmlContent += `
-                    <div class="relative h-96 rounded-3xl overflow-hidden group cursor-pointer shadow-lg">
-                        <img src="${data.imageUrl}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="${data.title}">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <h4 class="text-xl font-bold">${data.title}</h4>
-                                <p class="text-sm">${data.category}</p>
-                            </div>
-                        </div>
-                    </div>`;
-                });
-                
-                portfolioGrid.innerHTML = htmlContent;
-            } catch (error) {
-                console.error("Error fetching photos: ", error);
-                portfolioGrid.innerHTML = '<p class="text-center col-span-3 text-red-500">Error loading photos.</p>';
-            }
-        }
-
-        // Call the fetch functions when the page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            loadServices();
-            loadPhotos();
-        });
-
-        // --- CONTACT FORM LOGIC (Unchanged) ---
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = {
-                firstName: e.target[0].value,
-                lastName: e.target[1].value,
-                email: e.target[2].value,
-                message: e.target[3].value,
-                date: new Date().toISOString(),
-                isRead: false
-            };
-
-            try {
-                await addDoc(collection(db, "messages"), formData);
-                alert("Message sent successfully! We'll contact you soon.");
-                e.target.reset();
-            } catch (error) {
-                console.error("Error sending message:", error);
-                alert("Failed to send message. Please try again.");
-            }
-        });
-
-        // --- NAVBAR ACTIVE SCROLL LOGIC ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const id = entry.target.getAttribute('id');
-                const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                if (entry.isIntersecting && navLink) {
-                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-                    navLink.classList.add('active');
-                }
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
