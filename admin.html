@@ -153,9 +153,10 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        // Added onSnapshot, query, orderBy, updateDoc, deleteDoc, and doc for fetching messages
-        import { getFirestore, collection, onSnapshot, query, orderBy, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        // Added addDoc to Firestore imports
+        import { getFirestore, collection, onSnapshot, query, orderBy, updateDoc, deleteDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        // Added ref, uploadBytes, and getDownloadURL for Firebase Storage
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
         // Your Firebase Config
         const firebaseConfig = {
@@ -280,6 +281,70 @@
                 }
             }
         };
+
+        // --- NEW: Add Service Logic ---
+        document.getElementById('addServiceForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Saving... <i data-lucide="loader-2" class="w-4 h-4 animate-spin inline"></i>';
+            submitBtn.disabled = true;
+            lucide.createIcons();
+
+            const newService = {
+                title: document.getElementById('serviceTitle').value,
+                description: document.getElementById('serviceDesc').value,
+                bullets: document.getElementById('serviceBullets').value,
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                await addDoc(collection(db, "services"), newService);
+                alert("Service added successfully! It is now live on the website.");
+                e.target.reset();
+            } catch (error) {
+                console.error("Error adding service:", error);
+                alert("Failed to add service. Check console for details.");
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+            }
+        });
+
+        // --- NEW: External Link Photo Logic ---
+        document.getElementById('addPhotoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Saving... <i data-lucide="loader-2" class="w-4 h-4 animate-spin inline"></i>';
+            submitBtn.disabled = true;
+            lucide.createIcons();
+
+            const title = document.getElementById('photoTitle').value;
+            const category = document.getElementById('photoCategory').value;
+            const imageUrl = document.getElementById('photoUrl').value;
+
+            try {
+                // Save the Photo details & External URL to Firestore database
+                await addDoc(collection(db, "photos"), {
+                    title: title,
+                    category: category,
+                    imageUrl: imageUrl, // Saving the external link directly
+                    createdAt: new Date().toISOString()
+                });
+
+                alert("Photo link saved successfully! It is now live in your portfolio.");
+                e.target.reset();
+            } catch (error) {
+                console.error("Error saving photo link:", error);
+                alert("Failed to save link.");
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+            }
+        });
 
         // 3. Google Login Click Event
         googleLoginBtn.addEventListener('click', () => {
