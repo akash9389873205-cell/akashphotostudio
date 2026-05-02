@@ -106,6 +106,10 @@
                         <textarea id="serviceDesc" placeholder="Service Details" class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-lg focus:border-amber-500 outline-none text-white" rows="3" required></textarea>
                     </div>
                     <div>
+                        <label class="text-xs uppercase text-gray-500 font-bold mb-1 block">Service Image URL (External Link)</label>
+                        <input type="url" id="serviceImageUrl" placeholder="https://i.ibb.co/example.jpg" class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-lg focus:border-amber-500 outline-none text-white" required>
+                    </div>
+                    <div>
                         <label class="text-xs uppercase text-gray-500 font-bold mb-1 block">Features (Comma Separated)</label>
                         <input type="text" id="serviceBullets" placeholder="Candid, Drone, Video" class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-lg focus:border-amber-500 outline-none text-white">
                     </div>
@@ -291,6 +295,7 @@
                 title: document.getElementById('serviceTitle').value,
                 description: document.getElementById('serviceDesc').value,
                 bullets: document.getElementById('serviceBullets').value,
+                imageUrl: document.getElementById('serviceImageUrl').value,
                 createdAt: new Date().toISOString()
             };
 
