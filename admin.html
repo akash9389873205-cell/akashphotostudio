@@ -116,7 +116,7 @@
             <!-- 3. Manage Photos Tab -->
             <div id="photosTab" class="tab-content hidden">
                 <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <i data-lucide="upload-cloud" class="text-amber-500"></i> Upload Portfolio Photo
+                    <i data-lucide="link" class="text-amber-500"></i> Add Portfolio Photo Link
                 </h2>
                 <form id="addPhotoForm" class="bg-gray-900 border border-gray-800 p-6 rounded-xl shadow-md space-y-4 max-w-2xl">
                     <div>
@@ -139,10 +139,10 @@
                         </select>
                     </div>
                     <div>
-                        <label class="text-xs uppercase text-gray-500 font-bold mb-1 block">Select Image</label>
-                        <input type="file" id="photoFile" accept="image/*" class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-lg text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-600/20 file:text-amber-500 hover:file:bg-amber-600/30" required>
+                        <label class="text-xs uppercase text-gray-500 font-bold mb-1 block">Image URL (ImgBB / External Link)</label>
+                        <input type="url" id="photoUrl" placeholder="https://i.ibb.co/example.jpg" class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-lg focus:border-amber-500 outline-none text-white" required>
                     </div>
-                    <button type="submit" class="px-6 py-3 bg-amber-600 text-white rounded-lg font-bold hover:bg-amber-700 w-full mt-4">Upload Photo</button>
+                    <button type="submit" class="px-6 py-3 bg-amber-600 text-white rounded-lg font-bold hover:bg-amber-700 w-full mt-4">Save Photo Link</button>
                 </form>
             </div>
 
@@ -153,10 +153,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        // Added addDoc to Firestore imports
         import { getFirestore, collection, onSnapshot, query, orderBy, updateDoc, deleteDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        // Added ref, uploadBytes, and getDownloadURL for Firebase Storage
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
         // Your Firebase Config
         const firebaseConfig = {
@@ -172,7 +169,6 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
         const db = getFirestore(app);
-        const storage = getStorage(app);
 
         // Security Configuration: The ONLY allowed email
         const ALLOWED_EMAIL = "singhtechie0001@gmail.com";
